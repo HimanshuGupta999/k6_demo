@@ -22,4 +22,4 @@ jobs:
       uses: actions/upload-artifact@v3 
       with:
         name: k6-report
-        path: result.html
+        path: k6/result.html
