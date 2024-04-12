@@ -1,0 +1,22 @@
+name: Run k6 Tests and Store Reports
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Install k6
+      run: |
+        curl -sSLf https://github.com/loadimpact/k6/releases/download/v0.34.0/k6-v0.34.0-linux64.tar.gz | tar -xzC /tmp
+        sudo mv /tmp/k6-v0.34.0-linux64/k6 /usr/local/bin/k6
+      
+    - name: Run k6 Tests
+      run: k6 run --out json=result.json demo.js
