@@ -16,4 +16,10 @@ jobs:
     - name: Run local k6 test
       uses: k6io/action@v0.1
       with:
-        filename: demo.js
+        filename: k6/demo.js
+        
+    - name: Store performance test results
+      uses: actions/upload-artifact@v3 
+      with:
+        name: k6-report
+        path: result.html
